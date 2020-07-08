@@ -4,6 +4,7 @@ import nltk
 import numpy as np
 from sklearn import feature_extraction
 from tqdm import tqdm
+from nltk.corpus import wordnet 
 
 
 _wnl = nltk.WordNetLemmatizer()
@@ -68,6 +69,13 @@ def refuting_features(headlines, bodies):
         'pranks',
         'retract'
     ]
+    syn=[]
+    for word in _refuting_words:
+        for xx in wordnet.synsets("good"): 
+            for l in xx.lemmas(): 
+                syn.append(l.name())
+    for x in syn:
+        _refuting_words.append(x)
     X = []
     for i, (headline, body) in tqdm(enumerate(zip(headlines, bodies))):
         clean_headline = clean(headline)
@@ -93,7 +101,13 @@ def polarity_features(headlines, bodies):
         'pranks',
         'retract'
     ]
-
+    syn=[]
+    for word in _refuting_words:
+        for xx in wordnet.synsets("good"): 
+            for l in xx.lemmas(): 
+                syn.append(l.name())
+    for x in syn:
+        _refuting_words.append(x)
     def calculate_polarity(text):
         tokens = get_tokenized_lemmas(text)
         return sum([t in _refuting_words for t in tokens]) % 2
