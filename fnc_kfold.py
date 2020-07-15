@@ -35,7 +35,8 @@ if __name__ == "__main__":
     d = DataSet()
     folds,hold_out = kfold_split(d,n_folds=10)
     fold_stances, hold_out_stances = get_stances_for_folds(d,folds,hold_out)
-
+    print("length of fold stances :--------> ", len(fold_stances))
+    
     # Load the competition dataset
     competition_dataset = DataSet("competition_test")
     X_competition, y_competition = generate_features(competition_dataset.stances, competition_dataset, "competition")
