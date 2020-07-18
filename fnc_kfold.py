@@ -8,7 +8,6 @@ from Dataset import DataSet
 from generate_test_splits import kfold_split, get_stances_for_folds
 from score import report_score, LABELS, score_submission
 
-#from system import parse_params, check_version
 
 
 def generate_features(stances,dataset,name):
@@ -28,8 +27,7 @@ def generate_features(stances,dataset,name):
     return X,y
 
 if __name__ == "__main__":
-    #check_version()
-    #parse_params()
+    
 
     #Load the training dataset and generate folds
     d = DataSet()
